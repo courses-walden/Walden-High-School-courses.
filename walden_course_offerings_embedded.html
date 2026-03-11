@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Walden High School — Course Offerings 2026–2027</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --forest: #1a3a2a;
+      --moss: #2d5a3d;
+      --sage: #5a8a6a;
+      --mint: #a8d5b5;
+      --cream: #f7f4ee;
+      --gold: #c8a84b;
+      --rust: #b05c2e;
+      --ink: #1c1c1c;
+      --muted: #6b7b6e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: #1a1612;
+      color: var(--cream);
+      padding: 3.5rem 4rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 90% 50%, rgba(90,138,106,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(200,168,75,.10) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--sage) 50%, var(--gold) 100%);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .header-logo {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+    .header-text { flex: 1; }
+        .header-eyebrow {
+      font-size: .75rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: .75rem;
+      font-weight: 500;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -.01em;
+      color: var(--gold);
+    }
+    header h1 span { color: white; }
+    .header-sub {
+      margin-top: 1rem;
+      font-size: .95rem;
+      color: var(--mint);
+      font-weight: 300;
+      max-width: 55ch;
+    }
+
+    /* ── LAYOUT ── */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    .intro-note {
+      background: white;
+      border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.4rem;
+      font-size: .9rem;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .intro-note strong { color: var(--ink); }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-size: .68rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid var(--mint);
+    }
+
+    /* ── GRID OF DEPARTMENTS ── */
+    .dept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .dept-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(26,58,42,.07);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .dept-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(26,58,42,.13);
+    }
+
+    .dept-header {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: 1.1rem 1.4rem;
+    }
+    .dept-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .dept-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .dept-body { padding: .75rem 1.4rem 1.25rem; }
+
+    .dept-body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+    }
+    .dept-body li {
+      font-size: .88rem;
+      color: var(--ink);
+      display: flex;
+      align-items: baseline;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+    .dept-body li::before {
+      content: '–';
+      color: var(--sage);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .dept-body a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color .15s, border-color .15s;
+    }
+    .dept-body a:hover {
+      color: var(--moss);
+      border-bottom-color: var(--sage);
+    }
+    .half-cr {
+      font-size: .7rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .ap-badge {
+      font-size: .63rem;
+      font-weight: 500;
+      background: var(--forest);
+      color: var(--mint);
+      border-radius: 3px;
+      padding: 1px 5px;
+      letter-spacing: .04em;
+      flex-shrink: 0;
+    }
+    .new-badge {
+      font-size: .63rem;
+      font-weight: 600;
+      background: var(--gold);
+      color: #1a1612;
+      border-radius: 3px;
+      padding: 1px 5px;
+      letter-spacing: .05em;
+      flex-shrink: 0;
+    }
+
+    /* ── DEPT COLOR THEMES ── */
+    .dept-english .dept-header  { background: var(--forest); }
+    .dept-english .dept-icon    { background: rgba(168,213,181,.18); }
+
+    .dept-science .dept-header  { background: #2a3d1a; }
+    .dept-science .dept-icon    { background: rgba(168,213,181,.18); }
+
+    .dept-social .dept-header   { background: #3d2a1a; }
+    .dept-social .dept-icon     { background: rgba(200,168,75,.2); }
+
+    .dept-math .dept-header     { background: #1a2d3a; }
+    .dept-math .dept-icon       { background: rgba(100,160,200,.2); }
+
+    .dept-spanish .dept-header  { background: #3a1a1a; }
+    .dept-spanish .dept-icon    { background: rgba(200,100,100,.2); }
+
+    .dept-arts .dept-header     { background: #2a1a3a; }
+    .dept-arts .dept-icon       { background: rgba(160,100,200,.2); }
+
+    .dept-lifeskills .dept-header { background: #1a3a35; }
+    .dept-lifeskills .dept-icon   { background: rgba(100,200,180,.2); }
+
+    .dept-electives .dept-header { background: #3a351a; }
+    .dept-electives .dept-icon   { background: rgba(200,175,100,.2); }
+
+    /* ── GRADUATION REQUIREMENTS ── */
+    .grad-section {
+      margin-top: 1rem;
+    }
+    .grad-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: .75rem;
+      margin-bottom: 1.5rem;
+    }
+    .grad-item {
+      background: white;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 1px 8px rgba(0,0,0,.06);
+    }
+    .grad-credit {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      min-width: 2.5rem;
+      line-height: 1;
+    }
+    .grad-label {
+      font-size: .88rem;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+    .grad-sub {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: .2rem;
+    }
+
+    .grad-note {
+      background: var(--forest);
+      color: var(--mint);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      font-size: .85rem;
+      line-height: 1.6;
+    }
+    .grad-note strong { color: var(--gold); }
+
+    /* ── INDEPENDENT STUDY ── */
+    .ind-study {
+      background: linear-gradient(135deg, var(--moss), var(--forest));
+      color: white;
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 20px rgba(26,58,42,.18);
+    }
+    .ind-study h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-bottom: .75rem;
+    }
+    .ind-study p { font-size: .9rem; color: var(--mint); line-height: 1.6; }
+
+    /* ── LEGEND ── */
+    .legend {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      font-size: .8rem;
+      color: var(--muted);
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: .78rem;
+      color: var(--muted);
+      border-top: 1px solid var(--mint);
+    }
+
+    @media (max-width: 640px) {
+      header { padding: 2.5rem 1.5rem 2rem; }
+      main   { padding: 2rem 1rem 3rem; }
+      .dept-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <img src="data:image/jpeg;base64,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" alt="Walden School Logo" class="header-logo" />
+    <div class="header-text">
+      <p class="header-eyebrow">Academic Year 2026 – 2027</p>
+      <h1>Walden High School<br><span>Course Offerings</span></h1>
+      <p class="header-sub">Click any course name to view its description, prerequisites, standards assessed, and topic outline.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <p class="intro-note">
+    <strong>Credits:</strong> All courses are <strong>1 credit (full year)</strong> unless noted as ½ credit.
+    Scheduling honors course requests as much as logistically possible; core/required courses take precedence.
+    Courses may be added or canceled based on enrollment.
+  </p>
+
+  <!-- ════════════════ LEGEND ════════════════ -->
+  <div class="legend">
+    <span>Key:</span>
+    <div class="legend-item"><span class="ap-badge">AP</span> Advanced Placement course</div>
+    <div class="legend-item"><span class="new-badge">NEW</span> New offering this year</div>
+    <div class="legend-item"><span class="half-cr">½ cr.</span> Half-credit course</div>
+  </div>
+
+  <!-- ════════════════ DEPT GRID ════════════════ -->
+  <p class="section-label">Academic Departments</p>
+  <div class="dept-grid">
+
+    <!-- ENGLISH -->
+    <div class="dept-card dept-english">
+      <div class="dept-header">
+        <div class="dept-icon">📖</div>
+        <div class="dept-title">English</div>
+      </div>
+      <div class="dept-body">
+        <ul>
+          <li><a href="https://docs.google.com/document/d/1pXld0jsCtcu4KuxLj9Bsd1TWU7s0z16kVcWL31WnRoA/edit?usp=sharing" target="_blank">English 1</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1yO-w0AyrQ_rI-fWX_-QoYsqmxqlvriDu97CoHn45gSA/edit?tab=t.0" target="_blank">AP / Sophomore Seminar</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1ceHxXVz7C4U6MfvtszRmck1u_rv3GlGCqXuuYIUfyzE/edit?tab=t.0" target="_blank">AP English Language / English 3</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1K54WfIg2sLlHopIzUoMYch4QVELbjh6M0JqlTXsaT5U/edit?tab=t.0" target="_blank">AP English Literature / English 4</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SCIENCE -->
+    <div class="dept-card dept-science">
+      <div class="dept-header">
+        <div class="dept-icon">🔬</div>
+        <div class="dept-title">Science</div>
+      </div>
+      <div class="dept-body">
+        <ul>
+          <li><a href="https://docs.google.com/document/d/1coRxGIN4Xlsu2M8Td7Z6gGTU96jrze_fbBkgxA6eb-E/edit?tab=t.0" target="_blank">Biology</a></li>
+          <li><a href="https://docs.google.com/document/d/18_bTx6bU0xRuH4iWFoWTarziGme8asyCR8KRIZFqZYI/edit?tab=t.0" target="_blank">Chemistry</a></li>
+          <li><a href="https://docs.google.com/document/d/1J8i19yZoN5kYXjvr_Tbx5CDVHXFvd_F36Ga7LjsShlY/edit?tab=t.0#heading=h.bgnkshxw78rs" target="_blank">Physics</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1HPV_RVm8lsUrQ0CwrPokg6r-_NmMCl68NSMkvs7kc6Q/edit?tab=t.0" target="_blank">AP Biology</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1TcPbUQH5cYpjUclRcXCrj0cmdosZXPwDnLjfDgbjr8w/edit?tab=t.0" target="_blank">AP Chemistry</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1dIXul0sTKMAEOW9FX0Vel4J_rMVt9_CSg6MoVT8SVJM/edit?tab=t.0" target="_blank">AP Physics 1</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/16R9caJ00UGDYVgMoRW58x0O-Qebu2IJ35oH3XwC5tSA/edit?tab=t.0" target="_blank">AP Environmental Science</a></li>
+          <li><a href="https://docs.google.com/document/d/1LVlDYG6BZJF5x156I9Ps-94RrIgBN_CqghWMjivbsLU/edit?usp=sharing" target="_blank">Plant Science</a></li>
+          <li><a href="https://docs.google.com/document/d/1pGBBA9tavtBelKRLkkbiL2VYtCqMMXTt9ArUvKH5Cao/edit?tab=t.0" target="_blank">Anatomy</a></li>
+          <li><a href="https://docs.google.com/document/d/1dw1hrssJ_3rR99Lok7pbiPds8-fjhZQXFObXALC45UQ/edit?tab=t.0" target="_blank">Engineering</a> <span class="half-cr">½ cr.</span></li>
+          <li><a href="https://docs.google.com/document/d/1XAHOm9J9gu2IvIuRecylB-CT6YG0jEpvbghmKws6NaI/edit?tab=t.0" target="_blank">Oceanography</a> <span class="half-cr">½ cr.</span></li>
+          <li><span class="new-badge">NEW</span><a href="https://docs.google.com/document/d/1RrNjPTjkDxKPjS4m8PW9MuqfZ4_37ZxC5EG_9PJSiCU/edit?tab=t.0" target="_blank">Culinary Sciences</a> <span class="half-cr">½ cr.</span></li>
+          <li><a href="https://docs.google.com/document/d/1YFUA2QiCHQCaPPBvx1fSRo_RTMLIirCWPtIsGdzz5wQ/edit?tab=t.0" target="_blank">Evolution</a> <span class="half-cr">½ cr.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SOCIAL SCIENCE -->
+    <div class="dept-card dept-social">
+      <div class="dept-header">
+        <div class="dept-icon">🌍</div>
+        <div class="dept-title">Social Science</div>
+      </div>
+      <div class="dept-body">
+        <ul>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1s-09wOwMmpdXIjhiwIW7tok8wRtOT31zzOKRy934VYc/edit?tab=t.0" target="_blank">Human Geography</a> <span class="half-cr">(Reg. or AP)</span></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1csWE1wJi_wGisrUCQlW7iI_CDMHOr38zb50FQ9yvk-Y/edit?tab=t.0" target="_blank">World History</a> <span class="half-cr">(Reg. or AP)</span></li>
+          <li><span class="ap-badge">AP</span><span class="new-badge">NEW</span><a href="https://docs.google.com/document/d/1qGoL3TV9ycIz1zOEu7TjK4SxLGosxN_sKZZj_nIkYpU/edit?tab=t.0" target="_blank">AP Art History</a></li>
+          <li><a href="https://docs.google.com/document/d/1IlqEfqoZcb2vkMEELzGMtYPCCNhF74mUjIE_7LJDKS0/edit?tab=t.0" target="_blank">U.S. History</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1ph3UQq2ePVLdvtcVVLIK0BsSmHRLsRK1CfSsQ_P44uI/edit?tab=t.0" target="_blank">AP U.S. History</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1xx8BZPhglmQyXgBiIMXgxZbhGyAmiR3rWaBTs32bg4U/edit?tab=t.0" target="_blank">AP European History</a></li>
+          <li><a href="https://docs.google.com/document/d/1D9i3ETVOek0MPSFh-ApxmRskmZhW4MqNinO4uf_8Y0M/edit?tab=t.0" target="_blank">Introduction to Psychology</a></li>
+          <li><span class="new-badge">NEW</span><a href="https://docs.google.com/document/d/1DI380gBtWCl0HcdmDUYr2J22nuT8hr2bIsZXgIQeQP4/edit?tab=t.0" target="_blank">History of World Religions</a></li>
+          <li><span class="ap-badge">AP</span><span class="new-badge">NEW</span><a href="https://docs.google.com/document/d/1FuDc9rJF3msDIbIPm41fbBlDA9i5GImBfIxs-ag1sLc/edit?tab=t.0" target="_blank">AP Business with Personal Finance</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1rOOv7IHRT6DHfeux8I15EukOLATNG5Wp16IzliYxHYs/edit?tab=t.0" target="_blank">AP Economics (Micro &amp; Macro)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MATH & CS -->
+    <div class="dept-card dept-math">
+      <div class="dept-header">
+        <div class="dept-icon">📐</div>
+        <div class="dept-title">Math &amp; Computer Science</div>
+      </div>
+      <div class="dept-body">
+        <ul>
+          <li><a href="https://docs.google.com/document/d/1EIPGJbUb2WSIuvhX1sgZ6To9SUCI6817OgZj89s7m9s/edit?tab=t.0" target="_blank">Algebra 1</a></li>
+          <li><a href="https://docs.google.com/document/d/1d_8-z6CBVmnHSrO30rkxm2PQRSQPrgKdcvYtVnZzh7E/edit?tab=t.0" target="_blank">Geometry &amp; Advanced Geometry</a></li>
+          <li><a href="https://docs.google.com/document/d/1VwIyFhz-Bt_tp4erffwLUA-0FFrH6L4jt3RKXh6PhVg/edit?tab=t.0" target="_blank">Algebra 2 / Advanced Algebra 2</a></li>
+          <li><a href="https://docs.google.com/document/d/1cI5rwFrtskAidX4_aoKcv4qQmejdgxqZr_1qZAzvGKQ/edit?tab=t.0" target="_blank">Algebra 3 &amp; Statistics</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1lEjhiCnNgcxdviKF4MxajD8-Mo4zgkGBJV347X-3yYo/edit?tab=t.0" target="_blank">AP Precalculus</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/167YQPQyjvs7raH3X9mVmRTGZPMwuep-ruFkOqOjVQvI/edit?tab=t.0" target="_blank">AP Calculus AB</a></li>
+          <li><span class="ap-badge">AP</span><span class="new-badge">NEW</span><a href="https://docs.google.com/document/d/1gvn9IVHLKH4ARJ7aR0EHeqxrhl5qcY9hPBhSv6XAtmU/edit?tab=t.0" target="_blank">AP Statistics</a></li>
+          <li><a href="https://docs.google.com/document/d/191dSFmHaqUGqbAvOB4iMoxOfwNrulPhETdKOYXmckEQ/edit?tab=t.0" target="_blank">Intro to Computer Science</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1IKQbpuzfV85YMU1vhZKjNt4Z-H2Mp3Eg5CcY4puzLgY/edit?tab=t.0" target="_blank">AP Computer Science A (Java)</a></li>
+          <li><span class="ap-badge">AP</span><span class="new-badge">NEW</span><a href="https://docs.google.com/document/d/1mh3lqcJK26DqkIWkTGzVpkSwoOrzPbLVf_qekCTvfQE/edit?tab=t.0#heading=h.o9o37gkao5rl" target="_blank">AP Cybersecurity</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SPANISH -->
+    <div class="dept-card dept-spanish">
+      <div class="dept-header">
+        <div class="dept-icon">🗣️</div>
+        <div class="dept-title">Spanish</div>
+      </div>
+      <div class="dept-body">
+        <ul>
+          <li><a href="https://docs.google.com/document/d/1xQQYUiV_5MkXugFgZ6f2h4STaVC88fYcS1_uOR0ZJDw/edit?tab=t.0" target="_blank">Spanish 1</a></li>
+          <li><a href="https://docs.google.com/document/d/1AOaxKU0vuf1BRcyjLqLc8DB3jnEmCazV6FrU4v9x33s/edit?tab=t.0" target="_blank">Spanish 2</a></li>
+          <li><a href="https://docs.google.com/document/d/19jLzIjDN-j91hpq8h9lxScVCAlFPWkl3MFOKvu2z1A0/edit?tab=t.0" target="_blank">Spanish 3</a></li>
+          <li><a href="https://docs.google.com/document/d/1h42hKpS6n28wVr2_b1vQgQkF_ew56zRTSgCIyx6knAg/edit?tab=t.0" target="_blank">Spanish 4</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/136VZPSgdYL179TTQQaFHe1QMcagFPwy6U3QDULYqiuU/edit?tab=t.0" target="_blank">AP Spanish Language &amp; Culture</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FINE ARTS -->
+    <div class="dept-card dept-arts">
+      <div class="dept-header">
+        <div class="dept-icon">🎨</div>
+        <div class="dept-title">Fine Arts</div>
+      </div>
+      <div class="dept-body">
+        <ul>
+          <li><a href="https://docs.google.com/document/d/1v02NEXiORJiPEi1_Z-2wchO8HryaoJ_G6YyDAxNwPOM/edit?tab=t.0" target="_blank">Art 1</a></li>
+          <li><a href="https://docs.google.com/document/d/1W8ER-n6Tmrx4PF5heKk82I-VVI-eA7ZBsr_CK5fYfLo/edit?tab=t.0" target="_blank">Art 2</a></li>
+          <li><a href="https://docs.google.com/document/d/1L4uBoK29x9sU9Hn6mm889vEjat5P5f8smnVb2hLC_Sk/edit?tab=t.0" target="_blank">Art 3</a></li>
+          <li><a href="https://docs.google.com/document/d/1SQdsIu-lJxNgB5DE4GeG72a_icsHGG1TS0eFIxaFK8g/edit?tab=t.0" target="_blank">Art 4</a></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1Mn8Oih790lJRvY9saMnglxoTsMi3En8giy2sy2_v0KY/edit?tab=t.0" target="_blank">AP Art (Drawing, 2-D, &amp; 3-D)</a></li>
+          <li><a href="https://docs.google.com/document/d/1HjmeOjrcMAarFSI5tIAvUJG2VA6qTIMztEQnKSV5R2I/edit?tab=t.0" target="_blank">Theatrical Arts (Drama)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- LIFESKILLS -->
+    <div class="dept-card dept-lifeskills">
+      <div class="dept-header">
+        <div class="dept-icon">💪</div>
+        <div class="dept-title">Lifeskills</div>
+      </div>
+      <div class="dept-body">
+        <ul>
+          <li><a href="https://docs.google.com/document/d/1ergmFoVf_-ZW81B_81lfX5A4UIbA-Q42nhWQOxpG4WU/edit?tab=t.0" target="_blank">Life Skills / Health</a> <span class="half-cr">½ cr.</span></li>
+          <li><a href="https://docs.google.com/document/d/1xAyI0YjVec4MiG58CnPRE_vsV_6GkNI1JoZiac_FFKg/edit?tab=t.0" target="_blank">P.E.</a> <span class="half-cr">½ cr.</span></li>
+          <li><span class="new-badge">NEW</span><a href="https://docs.google.com/document/d/1maSXWiD4nsxK5sn3UeUEitiP708Pq7VC03Ru5ECIjSc/edit?usp=sharing" target="_blank">Advanced Physical Education</a> <span class="half-cr">½–1 cr.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- OTHER ELECTIVES -->
+    <div class="dept-card dept-electives">
+      <div class="dept-header">
+        <div class="dept-icon">✨</div>
+        <div class="dept-title">Other Electives</div>
+      </div>
+      <div class="dept-body">
+        <ul>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1BCDgcGUopDHOBxCw6JbAuf5GYyjm0XZZNJnuMF_UkX8/edit?tab=t.0" target="_blank">AP Research</a></li>
+          <li><a href="https://docs.google.com/document/d/1VCjhme6a3KPBGwHYRqZUyyv7DJfr5n3FsUxYYD-xEzs/edit?tab=t.0" target="_blank">Senior Capstone</a> <span class="half-cr">grad. req.</span></li>
+          <li><span class="ap-badge">AP</span><a href="https://docs.google.com/document/d/1RoOGCt3ZAUX8QXRfoOhrEllwxCi6sdzzodPvHAtM3ZU/edit?tab=t.0" target="_blank">African American Studies</a> <span class="half-cr">(Reg. or AP)</span></li>
+          <li><span class="new-badge">NEW</span><a href="https://docs.google.com/document/d/1Faymm7KmpnNobWE_mcczbtvG90wKGaKwQvIuIRADPMc/edit?tab=t.0" target="_blank">Creative Nonfiction</a></li>
+          <li><span class="new-badge">NEW</span><a href="https://docs.google.com/document/d/13ZoKBmhmV-QlefNBFJUpMogpQUVzz07p7ekzOsf_QxM/edit?tab=t.0" target="_blank">Visual Narratives</a></li>
+          <li><span class="new-badge">NEW</span><a href="https://docs.google.com/document/d/1wc4FYpFGLk5zTKHS4ErJ5YdZpZtZlaiUUYitX8YmqHI/edit?tab=t.0" target="_blank">Film Study (Studio Ghibli)</a> <span class="half-cr">½ cr.</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /dept-grid -->
+
+  <!-- ════════════════ INDEPENDENT STUDY ════════════════ -->
+  <div class="ind-study">
+    <h3>Independent Study</h3>
+    <p>Students may earn ½ or 1 credit through coursework taken online or outside Walden, professional internships, study abroad, or outside participation in a language, music, dance, or theater program.</p>
+  </div>
+
+  <!-- ════════════════ GRADUATION REQUIREMENTS ════════════════ -->
+  <div class="grad-section">
+    <p class="section-label">Graduation Requirements — 28 Credits Total</p>
+
+    <div class="grad-grid">
+      <div class="grad-item">
+        <div class="grad-credit">4</div>
+        <div><div class="grad-label">English</div></div>
+      </div>
+      <div class="grad-item">
+        <div class="grad-credit">4</div>
+        <div><div class="grad-label">Math</div></div>
+      </div>
+      <div class="grad-item">
+        <div class="grad-credit">3</div>
+        <div>
+          <div class="grad-label">Science</div>
+          <div class="grad-sub">Must include Biology &amp; Chemistry</div>
+        </div>
+      </div>
+      <div class="grad-item">
+        <div class="grad-credit">3</div>
+        <div><div class="grad-label">Social Studies</div></div>
+      </div>
+      <div class="grad-item">
+        <div class="grad-credit">2</div>
+        <div>
+          <div class="grad-label">World Language</div>
+          <div class="grad-sub">Level 2 of one language</div>
+        </div>
+      </div>
+      <div class="grad-item">
+        <div class="grad-credit">1</div>
+        <div><div class="grad-label">Fine Arts</div></div>
+      </div>
+      <div class="grad-item">
+        <div class="grad-credit">1</div>
+        <div><div class="grad-label">Life Skills</div></div>
+      </div>
+      <div class="grad-item">
+        <div class="grad-credit">1</div>
+        <div><div class="grad-label">Capstone Project</div></div>
+      </div>
+      <div class="grad-item">
+        <div class="grad-credit">9</div>
+        <div><div class="grad-label">Elective Courses</div></div>
+      </div>
+      <div class="grad-item">
+        <div class="grad-credit" style="font-size:1.1rem;">80h</div>
+        <div>
+          <div class="grad-label">Community Service</div>
+          <div class="grad-sub">20 hours per academic year</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grad-note">
+      <strong>Additional requirements:</strong> Students must complete a mandatory <strong>Success Course</strong> (summer orientation week) before their first year.
+      Students may elect to take a world language outside of Walden. Scheduling is designed to honor course requests while maximizing overall student access to core/required courses.
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Walden High School &nbsp;·&nbsp; Course Offerings 2026–2027 &nbsp;·&nbsp; Click any course to view full description &amp; prerequisites
+</footer>
+
+</body>
+</html>
